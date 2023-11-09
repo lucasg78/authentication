@@ -4,6 +4,7 @@
 // to add state to functional components.
 import React, { useState } from "react";
 import "./Auth.scss";
+import Button from "react-bootstrap/Button";
 
 // 2) Defining the Auth component:
 // This defines the Auth functional component,
@@ -48,26 +49,28 @@ function Auth() {
   return (
     <div className="App">
       {isSubmitted ? (
-        <h1>
+        <h1 className="welcome">
           Welcome {firstName} {lastName}!
         </h1>
       ) : (
         <form onSubmit={handleSubmit}>
           <label>
-            Please enter your first name:
+            First name: 
             <input
               type="text"
               value={firstName}
               onChange={handleFirstNameChange}
-            />
-            Please enter your last name:
+              style={{marginLeft: "10px"}}
+            /><br/><br/>
+            Last name: 
             <input
               type="text"
               value={lastName}
               onChange={handleLastNameChange}
+              style={{marginLeft: "10px"}}
             />
-          </label>
-          <button type="submit">Submit</button>
+          </label><br/><br/>
+          <Button type="submit">Submit</Button>
         </form>
       )}
     </div>
