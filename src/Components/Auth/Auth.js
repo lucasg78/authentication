@@ -42,7 +42,28 @@ function Auth() {
     }
   };
 
-  // 6) Rendering the component:
+   // 6) Handling form submission:
+   // The handleSignOut function in the Auth component is responsible for resetting
+   // the authentication status and clearing the user's first and last names when
+   // the user clicks the "Sign out" button. 
+   // Let's break down the logic step by step:
+   // 6.1 setIsSubmitted(false);: This line sets the isSubmitted state to false, 
+   // effectively resetting the submission status.
+   // When isSubmitted is false, the form for entering the first and last names will be displayed again.
+   // 6.2 setFirstName("");: This line sets the firstName state to an empty string, effectively
+   // clearing the previously entered first name.
+   // 6.3 setLastName("");: This line sets the lastName state to an empty string, effectively clearing
+   // the previously entered last name.
+   // By executing these steps, the handleSignOut function resets the authentication status
+   // and clears the user's first and last names, effectively returning the user to the initial authentication form. 
+   // This allows the user to sign in again with new credentials or information.
+  const handleSignOut = () => {
+    setIsSubmitted(false);
+    setFirstName("");
+    setLastName("");
+  };
+
+  // 7) Rendering the component:
   // Here, we conditionally render either a welcome message with the entered first and last names
   // if the form has been submitted (isSubmitted is true) or the input form itself.
   // The input field captures the user´s first and last names values, and the submit button triggers
@@ -50,10 +71,12 @@ function Auth() {
   return (
     <div className="App">
       {isSubmitted ? (
-        <h1 className="welcome">
-          Welcome {firstName} {lastName}!
-        </h1>
-
+        <>
+          <h1 className="welcome">
+            Welcome {firstName} {lastName}!
+          </h1>
+          <Button variant="danger" className="btn-out" onClick={handleSignOut}>Sign out</Button>
+        </>
       ) : (
         <form onSubmit={handleSubmit}>
           <label>
